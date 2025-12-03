@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula de Negociación - Prof. López Cifre</title>
+    <style>
+        /* ESTILO VISUAL (CSS) */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 0; }
+        .public-info { background-color: #e8f6f3; border-left: 5px solid #1abc9c; padding: 15px; margin-bottom: 30px; }
+        .role-selector { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; transition: background 0.3s; }
+        .btn-role { background-color: #34495e; color: white; }
+        .btn-role:hover { background-color: #2c3e50; }
+        .hidden { display: none; }
+        .private-box { border: 1px solid #ddd; padding: 20px; border-radius: 5px; margin-bottom: 20px; position: relative; }
+        .private-a { background-color: #fff8e1; border-left: 5px solid #f1c40f; }
+        .private-b { background-color: #e3f2fd; border-left: 5px solid #3498db; }
+        .close-btn { position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; border-radius: 50%; width: 25px; height: 25px; text-align: center; line-height: 25px; font-size: 14px; cursor: pointer; }
+        .agreement-section { background-color: #f9f9f9; padding: 20px; border-radius: 5px; border: 1px solid #eee; margin-top: 40px; }
+        input[type="text"], textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn-print { background-color: #27ae60; color: white; width: 100%; font-weight: bold; }
+        .btn-print:hover { background-color: #219150; }
+        .password-prompt { text-align: center; margin-bottom: 15px; padding: 10px; background: #eee; border-radius: 5px;}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏛️ Sala de Negociación Virtual</h1>
+    
+    <div class="public-info">
+        <h2>📢 Instrucciones Públicas (Comunes)</h2>
+        <p><strong>Contexto:</strong> Negociación de compraventa de una obra de arte moderna.</p>
+        <p><strong>Tiempo límite:</strong> 30 minutos.</p>
+        <p>Si no hay acuerdo, la subasta se declara desierta y ambas partes pierden la comisión.</p>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 10px;">
+        <p>Haz clic en tu rol e introduce la clave para ver tus objetivos secretos.</p>
+    </div>
+    <div class="role-selector">
+        <button class="btn-role" onclick="checkPassword('A')">Soy el Vendedor (Rol A)</button>
+        <button class="btn-role" onclick="checkPassword('B')">Soy el Comprador (Rol B)</button>
+    </div>
+
+    <div id="infoA" class="private-box private-a hidden">
+        <div class="close-btn" onclick="hideAll()">X</div>
+        <h3>🔒 Confidencial: VENDEDOR</h3>
+        <ul>
+            <li>Tu precio de reserva (mínimo) es <strong>50.000€</strong>.</li>
+            <li>Necesitas liquidez urgente antes del viernes.</li>
+            <li>Sabes que el cuadro tiene un pequeño defecto en el marco, si te preguntan, debes admitirlo.</li>
+        </ul>
+    </div>
+
+    <div id="infoB" class="private-box private-b hidden">
+        <div class="close-btn" onclick="hideAll()">X</div>
+        <h3>🔒 Confidencial: COMPRADOR</h3>
+        <ul>
+            <li>Tu presupuesto máximo es <strong>75.000€</strong>.</li>
+            <li>Tu cliente final es un coleccionista caprichoso que lo quiere YA.</li>
+            <li>Si consigues el cuadro por menos de 60.000€, tu comisión se duplica.</li>
+        </ul>
+    </div>
+
+    <div class="agreement-section">
+        <h2>✍️ Registro del Acuerdo</h2>
+        <p>Una vez finalizada la negociación, redactad aquí los términos.</p>
+        <label>Nombre del Vendedor:</label>
+        <input type="text" id="nameA" placeholder="Nombre del alumno...">
+        
+        <label>Nombre del Comprador:</label>
+        <input type="text" id="nameB" placeholder="Nombre del alumno...">
+        
+        <label>Términos del Acuerdo (Precio final y condiciones):</label>
+        <textarea id="terms" rows="5" placeholder="Ej: Se acuerda la venta por 62.000€ con entrega inmediata..."></textarea>
+        
+        <button class="btn-print" onclick="printAgreement()">🖨️ Firmar e Imprimir Acuerdo (PDF)</button>
+    </div>
+</div>
+
+<script>
+    // LOGICA (JAVASCRIPT)
+    
+    function hideAll() {
+        document.getElementById('infoA').style.display = 'none';
+        document.getElementById('infoB').style.display = 'none';
+    }
+
+    function checkPassword(role) {
+        hideAll(); // Ocultar cualquier otro abierto
+        
+        // Simulación de seguridad simple para clase
+        // Puedes cambiar las contraseñas aquí abajo donde dice '1234'
+        let password = prompt("Introduce la clave de acceso para el Rol " + role + ":");
+        
+        if (role === 'A' && password === '1234') {
+            document.getElementById('infoA').style.display = 'block';
+        } else if (role === 'B' && password === '1234') {
+            document.getElementById('infoB').style.display = 'block';
+        } else {
+            if(password != null) alert("Clave incorrecta. Inténtalo de nuevo.");
+        }
+    }
+
+    function printAgreement() {
+        var a = document.getElementById('nameA').value;
+        var b = document.getElementById('nameB').value;
+        var t = document.getElementById('terms').value;
+        
+        if(a === "" || b === "" || t === "") {
+            alert("Por favor, rellenad todos los campos antes de firmar.");
+            return;
+        }
+        
+        // Abre el diálogo de impresión del navegador
+        window.print();
+    }
+</script>
+
+</body>
+</html>
