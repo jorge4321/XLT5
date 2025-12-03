@@ -3,70 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Cliente</title>
+    <title>Portal Académico Personalizado</title>
     <style>
-        /* Estilos Generales (CSS) */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0; padding: 0; background-color: #f4f4f9;
+            display: flex; flex-direction: column; min-height: 100vh;
         }
-
-        /* Cabecera */
         header {
             background-color: #ffffff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            height: 90px;
         }
-
         .logo-container img {
-            max-height: 60px; /* Altura máxima para el logo */
-            max-width: 200px;
+            max-height: 70px; /* Ajuste para que se vean bien */
+            max-width: 250px;
             object-fit: contain;
         }
-
-        .user-info {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Contenido Principal */
         main {
-            flex: 1;
-            padding: 3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
+            flex: 1; padding: 3rem; max-width: 800px; margin: 0 auto; text-align: center;
         }
-
-        h1 {
-            color: #2c3e50;
-        }
-
         .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-top: 2rem;
+            background: white; padding: 2rem; border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-top: 2rem;
         }
-
-        /* Pie de página */
         footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.8rem;
+            background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: auto;
         }
     </style>
 </head>
@@ -74,49 +38,63 @@
 
     <header>
         <div class="logo-container">
-            <img id="client-logo" src="https://via.placeholder.com/200x60?text=LOGO+POR+DEFECTO" alt="Logotipo Cliente">
+            <img id="client-logo" src="https://via.placeholder.com/200x70?text=Bienvenido" alt="Logo">
         </div>
-        <div class="user-info">
-            Portal de Acceso Exclusivo
-        </div>
+        <div>Portal del Alumno/Profesor</div>
     </header>
 
     <main>
-        <h1 id="welcome-message">Bienvenido a su espacio privado</h1>
+        <h1 id="welcome-message">Bienvenido al Portal</h1>
         <div class="card">
-            <p>Este contenido está personalizado para la organización identificada en la cabecera.</p>
-            <p>Aquí iría el contenido específico del curso, documentos o dashboard.</p>
-            <br>
-            <button style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Acceder al Panel</button>
+            <p>Contenido exclusivo para alumnos y personal autorizado.</p>
+            <p><strong>Nota:</strong> El logotipo superior cambia según el código introducido en el enlace.</p>
         </div>
     </main>
 
     <footer>
-        &copy; 2025 Plataforma Educativa - Todos los derechos reservados.
+        &copy; 2025 Jorge López Cifre - Profesor Universitario
     </footer>
 
     <script>
-        // 1. Obtener los parámetros de la URL
-        const params = new URLSearchParams(window.location.search);
-        
-        // 2. Buscar el parámetro 'logo' y el parámetro 'nombre'
-        const logoUrl = params.get('logo');
-        const clientName = params.get('nombre');
+        // 1. DICCIONARIO DE LOGOS (Aquí configuramos las imágenes)
+        // Puedes añadir más universidades aquí siguiendo el mismo formato.
+        const logosDatabase = {
+            'ufv': {
+                nombre: 'Universidad Francisco de Vitoria',
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Logo_UFV.jpg/640px-Logo_UFV.jpg'
+            },
+            'esic': {
+                nombre: 'ESIC Business School',
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/ESIC_University.png/640px-ESIC_University.png'
+            },
+            'ue': {
+                nombre: 'Universidad Europea',
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Universidad_Europea_Logo.svg/1200px-Universidad_Europea_Logo.svg.png'
+            },
+            'usd': {
+                nombre: 'University of San Diego',
+                url: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/University_of_San_Diego_seal.svg/1200px-University_of_San_Diego_seal.svg.png'
+            }
+        };
 
-        // 3. Elementos del DOM
+        // 2. Leer el parámetro 'cliente' de la URL
+        const params = new URLSearchParams(window.location.search);
+        const codigoCliente = params.get('cliente'); // Ejemplo: lee 'ufv'
+
+        // 3. Buscar en nuestra base de datos y reemplazar
         const imgElement = document.getElementById('client-logo');
         const titleElement = document.getElementById('welcome-message');
 
-        // 4. Lógica de reemplazo
-        if (logoUrl) {
-            // Si hay una URL de logo en el link, la usamos
-            imgElement.src = logoUrl;
-        }
-
-        if (clientName) {
-            // Si hay nombre, personalizamos el título
-            titleElement.innerText = `Bienvenido al portal de ${clientName}`;
-            imgElement.alt = `Logotipo de ${clientName}`;
+        // Verificamos si el código existe en nuestro diccionario
+        if (codigoCliente && logosDatabase[codigoCliente]) {
+            const datos = logosDatabase[codigoCliente];
+            
+            // Cambiamos la imagen
+            imgElement.src = datos.url;
+            imgElement.alt = `Logotipo de ${datos.nombre}`;
+            
+            // Cambiamos el texto
+            titleElement.innerText = `Bienvenido al entorno de ${datos.nombre}`;
         }
     </script>
 </body>
