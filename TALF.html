@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de la Asignatura - Prof. López-Cifre</title>
+    <!-- Tailwind CSS para estilos rápidos y responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Animaciones suaves para las transiciones */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Estilo para el botón flotante del profesor */
+        .prof-float {
+            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.39);
+            transition: transform 0.3s ease;
+        }
+        .prof-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col relative">
+
+    <!-- Navbar Simple (Visible en todas las vistas) -->
+    <nav class="bg-blue-900 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="font-bold text-lg cursor-pointer" onclick="goHome()">Teoría de Autómatas y Lenguajes Formales</span>
+            <button onclick="goHome()" class="text-sm bg-blue-800 hover:bg-blue-700 px-3 py-1 rounded transition hidden" id="nav-home-btn">
+                <i data-lucide="home" class="inline w-4 h-4 mr-1"></i> Inicio
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <main class="flex-grow container mx-auto p-4 md:p-8 relative">
+
+        <!-- VISTA: LANDING PAGE (HOME) -->
+        <div id="view-home" class="fade-in space-y-8">
+            
+            <!-- Cabecera de la Asignatura -->
+            <header class="text-center space-y-4">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-blue-900 tracking-tight">
+                    Teoría de Autómatas y Lenguajes Formales
+                </h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Portal oficial de comunicación y recursos para el curso académico 2024-2025.
+                </p>
+            </header>
+
+            <!-- Grid de Opciones -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mt-10">
+                
+                <!-- Opción 1 -->
+                <div onclick="navigateTo('evaluacion')" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all duration-300 hover:-translate-y-1">
+                    <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                        <i data-lucide="clipboard-check" class="text-blue-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Evaluación</h3>
+                    <p class="text-sm text-slate-500">Criterios de calificación y porcentajes de la nota final.</p>
+                </div>
+
+                <!-- Opción 2 -->
+                <div onclick="navigateTo('fechas')" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all duration-300 hover:-translate-y-1">
+                    <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mb-4 group-hover:bg-red-600 transition-colors">
+                        <i data-lucide="calendar" class="text-red-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Fechas Importantes</h3>
+                    <p class="text-sm text-slate-500">Exámenes, entregas de prácticas y días festivos.</p>
+                </div>
+
+                <!-- Opción 3 -->
+                <div onclick="navigateTo('parcial1')" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all duration-300 hover:-translate-y-1">
+                    <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-600 transition-colors">
+                        <i data-lucide="book-open" class="text-green-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Contenidos 1er Parcial</h3>
+                    <p class="text-sm text-slate-500">Temario, apuntes y ejercicios de la primera mitad.</p>
+                </div>
+
+                <!-- Opción 4 -->
+                <div onclick="navigateTo('parcial2')" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all duration-300 hover:-translate-y-1">
+                    <div class="bg-teal-100 w-12 h-12 rounded-full flex items-center justify-center mb-4 group-hover:bg-teal-600 transition-colors">
+                        <i data-lucide="layers" class="text-teal-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Contenidos 2º Parcial</h3>
+                    <p class="text-sm text-slate-500">Temario avanzado para la recta final del curso.</p>
+                </div>
+
+                <!-- Opción 5 -->
+                <div onclick="navigateTo('trabajos')" class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-xl border border-slate-200 cursor-pointer transition-all duration-300 hover:-translate-y-1">
+                    <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mb-4 group-hover:bg-amber-600 transition-colors">
+                        <i data-lucide="briefcase" class="text-amber-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Trabajos a Realizar</h3>
+                    <p class="text-sm text-slate-500">Guías para proyectos, grupos y rúbricas.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- VISTA: EVALUACIÓN (Oculta por defecto) -->
+        <div id="view-evaluacion" class="hidden fade-in max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-slate-100">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                <i data-lucide="clipboard-check"></i> Sistema de Evaluación
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 border-b border-slate-300">
+                            <th class="p-4 font-semibold text-slate-700">Actividad</th>
+                            <th class="p-4 font-semibold text-slate-700">Peso en la Nota</th>
+                            <th class="p-4 font-semibold text-slate-700">Requisito Mínimo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr>
+                            <td class="p-4">Primer Parcial</td>
+                            <td class="p-4 font-bold text-blue-700">35%</td>
+                            <td class="p-4">4.0 / 10</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">Segundo Parcial</td>
+                            <td class="p-4 font-bold text-blue-700">35%</td>
+                            <td class="p-4">4.0 / 10</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">Trabajos y Prácticas</td>
+                            <td class="p-4 font-bold text-blue-700">20%</td>
+                            <td class="p-4">Entregar todos</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">Asistencia y Participación</td>
+                            <td class="p-4 font-bold text-blue-700">10%</td>
+                            <td class="p-4">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 text-sm">
+                <strong>Nota:</strong> Es necesario aprobar ambos parciales por separado para hacer media.
+            </div>
+            <button onclick="goHome()" class="mt-8 px-6 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg transition">Volver al Inicio</button>
+        </div>
+
+        <!-- VISTA: FECHAS IMPORTANTES -->
+        <div id="view-fechas" class="hidden fade-in max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                <i data-lucide="calendar"></i> Fechas Importantes
+            </h2>
+            <div class="grid gap-4">
+                <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-500 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-lg">Examen Primer Parcial</h4>
+                        <p class="text-slate-500">Aula Magna, Edificio B</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-2xl font-bold text-slate-800">15</span>
+                        <span class="block text-xs uppercase font-bold text-red-500">Noviembre</span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-lg">Entrega Trabajo Grupal</h4>
+                        <p class="text-slate-500">Campus Virtual</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-2xl font-bold text-slate-800">10</span>
+                        <span class="block text-xs uppercase font-bold text-blue-500">Diciembre</span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-500 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-lg">Examen Segundo Parcial</h4>
+                        <p class="text-slate-500">Aula 304, Edificio A</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-2xl font-bold text-slate-800">22</span>
+                        <span class="block text-xs uppercase font-bold text-red-500">Enero</span>
+                    </div>
+                </div>
+            </div>
+            <button onclick="goHome()" class="mt-8 px-6 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg transition">Volver al Inicio</button>
+        </div>
+
+        <!-- VISTA: CONTENIDOS 1ER PARCIAL -->
+        <div id="view-parcial1" class="hidden fade-in max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                <i data-lucide="book-open"></i> Contenidos - Primer Parcial
+            </h2>
+            <div class="space-y-4">
+                <details class="bg-white p-4 rounded-lg shadow cursor-pointer group">
+                    <summary class="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition">Tema 1: Álgebra Lineal</summary>
+                    <p class="mt-2 text-slate-600 pl-4 border-l-2 border-slate-200">
+                        Matrices, determinantes, sistemas de ecuaciones lineales, espacios vectoriales.
+                    </p>
+                </details>
+                <details class="bg-white p-4 rounded-lg shadow cursor-pointer group">
+                    <summary class="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition">Tema 2: Cálculo Diferencial</summary>
+                    <p class="mt-2 text-slate-600 pl-4 border-l-2 border-slate-200">
+                        Límites, continuidad, derivadas y aplicaciones de la derivada.
+                    </p>
+                </details>
+            </div>
+            <button onclick="goHome()" class="mt-8 px-6 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg transition">Volver al Inicio</button>
+        </div>
+
+        <!-- VISTA: CONTENIDOS 2ND PARCIAL -->
+        <div id="view-parcial2" class="hidden fade-in max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                <i data-lucide="layers"></i> Contenidos - Segundo Parcial
+            </h2>
+            <div class="space-y-4">
+                <details class="bg-white p-4 rounded-lg shadow cursor-pointer group">
+                    <summary class="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition">Tema 3: Cálculo Integral</summary>
+                    <p class="mt-2 text-slate-600 pl-4 border-l-2 border-slate-200">
+                        Integrales indefinidas, definidas, métodos de integración y cálculo de áreas.
+                    </p>
+                </details>
+                <details class="bg-white p-4 rounded-lg shadow cursor-pointer group">
+                    <summary class="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition">Tema 4: Ecuaciones Diferenciales</summary>
+                    <p class="mt-2 text-slate-600 pl-4 border-l-2 border-slate-200">
+                        Introducción a las EDOs de primer orden y lineales.
+                    </p>
+                </details>
+            </div>
+            <button onclick="goHome()" class="mt-8 px-6 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg transition">Volver al Inicio</button>
+        </div>
+
+        <!-- VISTA: TRABAJOS -->
+        <div id="view-trabajos" class="hidden fade-in max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 flex items-center gap-3">
+                <i data-lucide="briefcase"></i> Trabajos a Realizar
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-2 bg-amber-500"></div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Proyecto de Investigación</h3>
+                        <p class="text-slate-600 text-sm mb-4">Grupos de 3-4 personas. Tema libre relacionado con la aplicación de las matemáticas en la ingeniería.</p>
+                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Descargar guía PDF &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-2 bg-amber-500"></div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Problemas Semanales</h3>
+                        <p class="text-slate-600 text-sm mb-4">Hoja de problemas obligatoria para entregar cada viernes antes de las 14:00.</p>
+                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline">Ver hoja actual &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            <button onclick="goHome()" class="mt-8 px-6 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg transition">Volver al Inicio</button>
+        </div>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-slate-800 text-slate-300 py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p class="text-lg font-semibold text-white">Prof. Jorge López-Cifre, PhD</p>
+            <p class="text-sm mt-1 opacity-75">Departamento de Matemáticas y Ciencias Aplicadas</p>
+            <p class="text-xs mt-4 text-slate-500">&copy; 2024 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante del Profesor (Esquina Inferior Derecha) -->
+    <div class="fixed bottom-6 right-6 z-50 group">
+        <!-- Tooltip -->
+        <div class="absolute bottom-full right-0 mb-2 px-3 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Prof. López-Cifre
+        </div>
+        <!-- Imagen Circular -->
+        <div class="prof-float w-16 h-16 rounded-full border-4 border-white bg-slate-200 overflow-hidden cursor-pointer" title="Contactar con el Profesor">
+            <!-- Usando una imagen placeholder profesional -->
+            <img src="https://ui-avatars.com/api/?name=Jorge+Lopez&background=0D8ABC&color=fff&size=128" alt="Profesor López" class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    <!-- Script de Lógica -->
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // Función para navegar entre "páginas"
+        function navigateTo(pageId) {
+            // Ocultar todas las vistas
+            const views = document.querySelectorAll('[id^="view-"]');
+            views.forEach(view => {
+                view.classList.add('hidden');
+            });
+
+            // Mostrar la vista seleccionada
+            const target = document.getElementById(`view-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // Mostrar botón de inicio en navbar
+            document.getElementById('nav-home-btn').classList.remove('hidden');
+
+            // Scroll arriba suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Función para volver al inicio
+        function goHome() {
+            // Ocultar todas las vistas
+            const views = document.querySelectorAll('[id^="view-"]');
+            views.forEach(view => {
+                view.classList.add('hidden');
+            });
+
+            // Mostrar Landing
+            document.getElementById('view-home').classList.remove('hidden');
+
+            // Ocultar botón de inicio en navbar
+            document.getElementById('nav-home-btn').classList.add('hidden');
+            
+            // Scroll arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
