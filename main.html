@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos 1er Semestre 2026 - Jorge López Cifre</title>
+    <style>
+        /* Estilos Generales */
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --esic-color: #005eb8; /* Azul corporativo estilo ESIC */
+            --uem-color: #A31835;  /* Rojo estilo UEM */
+            --usd-color: #002855;  /* Azul oscuro USD */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        p.subtitle {
+            color: var(--text-light);
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        .uni-section {
+            margin-bottom: 25px;
+        }
+
+        .uni-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #888;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* Estilos de los Botones/Enlaces */
+        .course-link {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .course-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: #fafafa;
+        }
+
+        /* Indicadores de color por universidad */
+        .esic-link { border-left: 5px solid var(--esic-color); }
+        .uem-link { border-left: 5px solid var(--uem-color); }
+        .usd-link { border-left: 5px solid var(--usd-color); }
+
+        .tag {
+            font-size: 0.75rem;
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+            color: #555;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* Ajuste para móviles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Jorge López Cifre</h1>
+            <p class="subtitle">Selección de Cursos | 1er Semestre 2026</p>
+        </header>
+
+        <div class="uni-section">
+            <div class="uni-title">ESIC Business & Marketing School</div>
+            
+            <a href="#" class="course-link esic-link" target="_blank">
+                Teoría de Autómatas y Lenguajes Formales
+            </a>
+            
+            <a href="#" class="course-link esic-link" target="_blank">
+                Dirección de Producción
+            </a>
+
+            <a href="#" class="course-link esic-link" target="_blank">
+                Dirección de Operaciones
+            </a>
+        </div>
+
+        <div class="uni-section">
+            <div class="uni-title">Universidad Europea de Madrid</div>
+            
+            <a href="#" class="course-link uem-link" target="_blank">
+                TFM Chilenos Europea
+            </a>
+
+            <a href="#" class="course-link uem-link" target="_blank">
+                <span class="tag">M11</span> Dirección de Ventas
+            </a>
+
+            <a href="#" class="course-link uem-link" target="_blank">
+                <span class="tag">M12</span> Dirección de Ventas
+            </a>
+
+            <a href="#" class="course-link uem-link" target="_blank">
+                <span class="tag">M13</span> Sales Management
+            </a>
+        </div>
+
+        <div class="uni-section">
+            <div class="uni-title">University of San Diego (Madrid)</div>
+            
+            <a href="#" class="course-link usd-link" target="_blank">
+                <span class="tag">Spring</span> Organizational Behavior
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2026 Jorge López Cifre. Todos los derechos reservados.
+        </footer>
+    </div>
+
+</body>
+</html>
